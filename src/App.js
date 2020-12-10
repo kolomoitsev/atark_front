@@ -1,23 +1,22 @@
-import logo from './logo.svg';
+import React from "react";
+
 import './App.css';
 
-function App() {
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
+
+import { AuthPage, RegisterPage, HomePage } from './pages/pages'
+
+require("dotenv").config()
+
+const App = () => {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <Router>
+            <Route path='/login' component={ AuthPage } />
+            <Route path='/register' component={ RegisterPage } />
+            <Route path='/home' component={ HomePage } />
+            <Route exact path='/'><Redirect to='/home'>Home...</Redirect></Route>
+        </Router>
     </div>
   );
 }

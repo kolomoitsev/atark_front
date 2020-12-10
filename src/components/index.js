@@ -1,0 +1,7 @@
+export { default as Chart } from './chart.component'
+export { default as Deposits } from './deposits.compoment'
+export { default as Orders } from './orders.component'
+export { default as Schedule } from './schedule.component'
+export { default as AddWorker } from './addworker.component'
+export { default as ListWorker } from './listworker.component'
+export { default as PointStats } from './pointstats.component'
