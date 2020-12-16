@@ -2,31 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7fc3f780-eed0-42cc-b97c-fe80d520f8d8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/ListTransport.component.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/categoriesList.component.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/createBook.component.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/listRents.component.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/i18n.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/locales/en/translation.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/locales/uk/translation.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/redux/reducers/book.reducer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cert.pem" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/key.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/addworker.component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/addworker.component.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/chart.component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/chart.component.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/deposits.compoment.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/deposits.compoment.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/listitems.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/listitems.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/listworker.component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/listworker.component.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/orders.component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/orders.component.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/pointstats.component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pointstats.component.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/schedule.component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/schedule.component.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/home.page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/home.page.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/reducers/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/reducers/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,7 +81,7 @@
       <workItem from="1607982859159" duration="5948000" />
       <workItem from="1608046932534" duration="7332000" />
       <workItem from="1608065720672" duration="596000" />
-      <workItem from="1608067909168" duration="18190000" />
+      <workItem from="1608067909168" duration="19856000" />
     </task>
     <servers />
   </component>
