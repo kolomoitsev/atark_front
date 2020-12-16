@@ -4,6 +4,8 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListSubheader from '@material-ui/core/ListSubheader';
 
+import { Link } from 'react'
+
 import LayersIcon from '@material-ui/icons/Layers';
 
 import HomeIcon from '@material-ui/icons/Home';
@@ -18,27 +20,33 @@ import AddIcon from '@material-ui/icons/Add';
 import SettingsIcon from '@material-ui/icons/Settings';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
+const redirectButton = (link) => {
+
+    window.location = link
+
+}
+
 export const mainListItems = (
     <div>
-        <ListItem button>
+        <ListItem button onClick={() => redirectButton('/home')}>
             <ListItemIcon>
                 <HomeIcon />
             </ListItemIcon>
             <ListItemText primary="Home" />
         </ListItem>
-        <ListItem button>
+        <ListItem button onClick={() => redirectButton('/home/point')}>
             <ListItemIcon>
                 <StoreIcon />
             </ListItemIcon>
             <ListItemText primary="Rent store" />
         </ListItem>
-        <ListItem button>
+        <ListItem button onClick={() => redirectButton('/home/schedule')}>
             <ListItemIcon>
                 <DateRangeIcon />
             </ListItemIcon>
             <ListItemText primary="Schedule" />
         </ListItem>
-        <ListItem button>
+        <ListItem button onClick={() => redirectButton('/home/statistic')}>
             <ListItemIcon>
                 <TimelineIcon />
             </ListItemIcon>
@@ -50,31 +58,31 @@ export const mainListItems = (
 export const secondaryListItems = (
     <div>
         {/*<ListSubheader inset>Services</ListSubheader>*/}
-        <ListItem button>
+        <ListItem button onClick={() => redirectButton('/home/rents')}>
             <ListItemIcon>
                 <LayersIcon />
             </ListItemIcon>
             <ListItemText primary="Rents" />
         </ListItem>
-        <ListItem button>
+        <ListItem button onClick={() => redirectButton('/home/categories')}>
             <ListItemIcon>
                 <CategoryIcon />
             </ListItemIcon>
             <ListItemText primary="Categories" />
         </ListItem>
-        <ListItem button>
+        <ListItem button onClick={() => redirectButton('/home/transport')}>
             <ListItemIcon>
                 <DirectionsCarIcon />
             </ListItemIcon>
             <ListItemText primary="Transport" />
         </ListItem>
-        <ListItem button>
+        <ListItem button onClick={() => redirectButton('/home/notifications')}>
             <ListItemIcon>
                 <NotificationsNoneIcon />
             </ListItemIcon>
             <ListItemText primary="Notifications" />
         </ListItem>
-        <ListItem button>
+        <ListItem button onClick={() => redirectButton('/home/add')}>
             <ListItemIcon>
                 <AddIcon />
             </ListItemIcon>
@@ -86,13 +94,13 @@ export const secondaryListItems = (
 
 export const thirdListItems = (
     <div>
-        <ListItem button>
+        <ListItem button onClick={() => redirectButton('/home/additional')}>
             <ListItemIcon>
                 <SettingsIcon />
             </ListItemIcon>
             <ListItemText primary="Options" />
         </ListItem>
-        <ListItem button>
+        <ListItem button onClick={() => redirectButton('/home/signout')}>
             <ListItemIcon>
                 <ExitToAppIcon />
             </ListItemIcon>

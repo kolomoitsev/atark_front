@@ -5,6 +5,18 @@ import Title from './Title';
 import {useSelector} from "react-redux";
 import axios from "axios";
 
+
+
+import i18n from '../i18n';
+import { withNamespaces } from 'react-i18next';
+
+
+import moment from "moment";
+
+require('moment/locale/uk.js');
+// or if you want to include all locales:
+require("moment/min/locales.min");
+
 // Generate Sales Data
 const createData = (time, amount) => {
     return { time, amount };
@@ -39,9 +51,11 @@ const aggregateData = (items) => {
 }
 
 
-const Chart = () =>  {
+const Chart = ({ t }) =>  {
 
     const point = useSelector(state => state.point)
+
+    const locale = localStorage.getItem('lang')
 
     useEffect( () => {
 
@@ -61,7 +75,7 @@ const Chart = () =>  {
                 const toChart = aggregateData(iterableHistory)
 
                 for(let i of toChart){
-                    //console.log(i)
+
                     data.push(createData(i.date, i.count))
                 }
 
@@ -76,7 +90,7 @@ const Chart = () =>  {
 
     return (
         <>
-            <Title>Today</Title>
+            <Title>{t('Today')}</Title>
             <ResponsiveContainer>
                 <LineChart
                     data={data}
@@ -104,4 +118,4 @@ const Chart = () =>  {
     );
 }
 
-export default Chart
+export default withNamespaces()(Chart)

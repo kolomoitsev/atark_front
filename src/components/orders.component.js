@@ -9,7 +9,16 @@ import TableRow from '@material-ui/core/TableRow';
 import {useSelector} from "react-redux";
 import Title from './Title'
 
+import i18n from '../i18n';
+import { withNamespaces } from 'react-i18next';
+
 import axios from 'axios'
+
+import moment from "moment";
+
+require('moment/locale/uk.js');
+// or if you want to include all locales:
+require("moment/min/locales.min");
 
 const {v4: uuidv4} = require('uuid');
 
@@ -23,11 +32,13 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const Orders = () => {
+const Orders = ({ t }) => {
 
     const history = useSelector(state => state.history)
 
     const [historyData, setHistoryData] = useState([])
+
+    const locale = localStorage.getItem('lang')
 
     useEffect(() => {
 
@@ -39,7 +50,9 @@ const Orders = () => {
 
             if (check === false) {
                 await setHistoryData([])
-            } else await setHistoryData(iterableHistory)
+            } else {
+                await setHistoryData(iterableHistory)
+            }
 
         }
         getHistory()
@@ -48,27 +61,23 @@ const Orders = () => {
 
     const classes = useStyles();
 
-    historyData && console.log(historyData)
-
-
     return (
 
         <>
-            <Title>Recent Orders</Title>
+            <Title>{t('Recent Orders')}</Title>
             <Table size="small">
                 <TableHead>
                     <TableRow>
-                        <TableCell align='center'>Index</TableCell>
-                        <TableCell align='center'>Transport</TableCell>
-                        <TableCell align='center'>User</TableCell>
-                        <TableCell align='center'>Tariff</TableCell>
-                        <TableCell align='center'>Book starting at</TableCell>
-                        <TableCell align='center'>Book ending at</TableCell>
+                        <TableCell align='center'>{t('Index')}</TableCell>
+                        <TableCell align='center'>{t('Transport')}</TableCell>
+                        <TableCell align='center'>{t('User')}</TableCell>
+                        <TableCell align='center'>{t('Tariff')}</TableCell>
+                        <TableCell align='center'>{t('Book starting at')}</TableCell>
+                        <TableCell align='center'>{t('Book ending at')}</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
-
-                    {historyData.length && historyData.map((row, i) => (
+                    { historyData.length && historyData.map((row, i) => (
 
                         <TableRow key={row.r._id}>
                             <TableCell align='center' key={uuidv4()}>
@@ -84,10 +93,10 @@ const Orders = () => {
                                 {`${row.tariff.tariff_name}, ${row.tariff.tariff_price}`}
                             </TableCell>
                             <TableCell align='center' key={uuidv4()}>
-                                {new Date(row.r.book_start).toLocaleString()}
+                                { locale === 'en' ? moment(row.r.book_start).locale('en').format('lll') :  moment(row.r.book_start).locale('uk').format('lll') }
                             </TableCell>
                             <TableCell align='center' key={uuidv4()}>
-                                {new Date(row.r.book_end).toLocaleString()}
+                                { locale === 'en' ? moment(row.r.book_end).locale('en').format('lll') :  moment(row.r.book_end).locale('uk').format('lll') }
                             </TableCell>
                         </TableRow>
                     ))}
@@ -102,4 +111,4 @@ const Orders = () => {
     );
 }
 
-export default Orders
+export default withNamespaces()(Orders)

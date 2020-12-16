@@ -1,13 +1,13 @@
 import React from 'react';
 import { render } from 'react-dom';
+import './i18n';
+
 import './index.css';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
 
 import {createStore, compose} from "redux";
 import {Provider} from 'react-redux'
 import reducer from './redux/reducers'
-
 const store = createStore(reducer, compose(
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 ));

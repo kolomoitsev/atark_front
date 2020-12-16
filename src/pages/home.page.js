@@ -4,7 +4,9 @@ import {BrowserRouter as Router, Route} from 'react-router-dom'
 
 import axios from "axios";
 
-import {useDispatch, useSelector} from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+
+
 
 import clsx from 'clsx';
 import {makeStyles} from '@material-ui/core/styles';
@@ -27,7 +29,29 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import {mainListItems, secondaryListItems, thirdListItems} from '../components/listitems';
 
-import {AddWorker, Chart, Deposits, ListWorker, Orders, Schedule, PointStats} from '../components/index'
+import MenuItem from '@material-ui/core/MenuItem';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import InputLabel from '@material-ui/core/InputLabel';
+
+import i18n from '../i18n';
+import { withNamespaces } from 'react-i18next';
+
+import {
+    AddWorker,
+    Chart,
+    Deposits,
+    ListWorker,
+    Orders,
+    Schedule,
+    PointStats,
+    ListRents,
+    CategoriesList,
+    ListTransport,
+    CreateBook
+} from '../components/index'
+
 import MuiAlert from "@material-ui/lab/Alert";
 
 const Copyright = () => {
@@ -128,7 +152,7 @@ function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
 
-const HomePage = () => {
+const HomePage = ({ t }) => {
 
     const dispatch = useDispatch()
 
@@ -181,7 +205,8 @@ const HomePage = () => {
 
         const getPointStatistics = async () => {
             if (point && point._id) {
-                const {data} = await axios.get(`${process.env.REACT_APP_BACKEND_ENDPOINT}/api/v1/statistic/point/${point._id}`, {
+                const {data} = await axios
+                    .get(`${process.env.REACT_APP_BACKEND_ENDPOINT}/api/v1/statistic/point/${point._id}`, {
                     headers: {
                         'Authorization': `Bearer ${localStorage.getItem('access_token')}`
                     }
@@ -191,31 +216,23 @@ const HomePage = () => {
                 data && await dispatch({type: 'SET_POINT_STATISTIC', payload: data})
             }
         }
-
         getPointStatistics()
-
     }, [point])
 
     useEffect(() => {
-
         const getWorkers = async () => {
-
             if (point && point._id) {
-
-                const { data : { users } } = await axios.get(`${process.env.REACT_APP_BACKEND_ENDPOINT}/api/v1/point/list/${point._id}`, {
-                    headers: {
-                        'Authorization': `Bearer ${localStorage.getItem('access_token')}`
-                    }
+                const { data : { users } } = await axios
+                    .get(`${process.env.REACT_APP_BACKEND_ENDPOINT}/api/v1/point/list/${point._id}`,
+                    {
+                        headers: {
+                            'Authorization': `Bearer ${localStorage.getItem('access_token')}`
+                        }
                 })
-
                 setWorkers(users)
-
             }
-
         }
-
         getWorkers()
-
     }, [point])
 
     const classes = useStyles();
@@ -232,6 +249,17 @@ const HomePage = () => {
 
     const addUserError = useSelector(state => state.errors.error)
 
+    const [lang, setLang] = useState('en')
+
+    const changeLanguage = (lng) => {
+        i18n.changeLanguage(lng);
+    }
+
+    useEffect( () => {
+        changeLanguage(lang)
+        localStorage.setItem('lang', lang)
+    }, [lang])
+
     return (
         <div className={classes.root}>
             <CssBaseline/>
@@ -247,12 +275,23 @@ const HomePage = () => {
                         <MenuIcon/>
                     </IconButton>
                     <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-                        Dashboard
+                        {t('Dashboard')}
                     </Typography>
                     <IconButton color="inherit">
-                        <Badge badgeContent={4} color="secondary">
-                            <NotificationsIcon/>
-                        </Badge>
+
+                        <FormControl className={classes.formControl}>
+                            <InputLabel id="demo-simple-select-filled-label">{t('Language')}</InputLabel>
+                            <Select
+                                labelId="demo-simple-select-filled-label"
+                                id="demo-simple-select-filled"
+                                value={lang}
+                                onChange={event => setLang(event.target.value)}
+                            >
+                                <MenuItem value={'uk'}>Украинский</MenuItem>
+                                <MenuItem value={'en'}>English</MenuItem>
+                            </Select>
+                        </FormControl>
+
                     </IconButton>
                 </Toolbar>
             </AppBar>
@@ -314,7 +353,7 @@ const HomePage = () => {
                                 <Grid item xs={12} md={12} lg={12}>
                                     <Grid container>
 
-                                        {workers && workers.map(worker => <ListWorker worker={worker}/>)}
+                                        {workers && workers.map(worker => <ListWorker worker={worker} />)}
 
                                     </Grid>
                                 </Grid>
@@ -336,25 +375,40 @@ const HomePage = () => {
                                 </Grid>
                             </Route>
                             <Route path='/home/statistic'>
-                                Statistic
-                                <Grid item xs={12} md={8} lg={9}>
+                                <Grid item xs={12} md={12} lg={12}>
                                     <PointStats />
                                 </Grid>
                             </Route>
                             <Route path='/home/rents'>
-                                Rents
+                                <Grid item xs={12} md={12} lg={12}>
+                                    <Grid container>
+                                        <ListRents />
+                                    </Grid>
+                                </Grid>
                             </Route>
                             <Route path='/home/categories'>
-                                Categories
+                                <Grid item xs={12} md={12} lg={12}>
+                                    <Grid container>
+                                        <CategoriesList />
+                                    </Grid>
+                                </Grid>
                             </Route>
                             <Route path='/home/transport'>
-                                Transport
+                                <Grid item xs={12} md={12} lg={12}>
+                                    <Grid container>
+                                        <ListTransport />
+                                    </Grid>
+                                </Grid>
                             </Route>
                             <Route path='/home/notifications'>
                                 Notifications
                             </Route>
                             <Route path='/home/add'>
-                                Add new booking
+                                <Grid item xs={12} md={12} lg={12}>
+                                    <Grid container>
+                                        <CreateBook />
+                                    </Grid>
+                                </Grid>
                             </Route>
                             <Route path='/home/additional'>
                                 Options
@@ -373,4 +427,4 @@ const HomePage = () => {
     );
 }
 
-export default HomePage
+export default withNamespaces()(HomePage)

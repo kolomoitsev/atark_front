@@ -13,6 +13,10 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import MuiAlert from '@material-ui/lab/Alert';
 
+
+import i18n from '../i18n';
+import { withNamespaces } from 'react-i18next';
+
 import axios from 'axios'
 import {useDispatch, useSelector} from "react-redux";
 
@@ -30,7 +34,7 @@ function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
 
-const AddWorker = () => {
+const AddWorker = ({ t }) => {
 
     const classes = useStyles();
 
@@ -119,26 +123,25 @@ const AddWorker = () => {
 
 
                 <Dialog className={classes.forms} open={open} onClose={handleForm} aria-labelledby="form-dialog-title2">
-                    <DialogTitle id="form-dialog-title2">Adding new worker to rent point</DialogTitle>
+                    <DialogTitle id="form-dialog-title2">{t('Adding new worker to rent point')}</DialogTitle>
                     <DialogContent>
                         <DialogContentText>
-                            To add a new worker to your rent point you have to insert his mail
-                            and you will have all available users to add.
+                            {t('To add a new worker to your rent point you have to insert his mail and you will have all available users to add.')}
                         </DialogContentText>
                         {users && <Autocomplete
                             id="combo-box-demo2"
                             options={users}
                             onSelect={event => handleSelect(event)}
                             getOptionLabel={(option) => option.user_email}
-                            renderInput={(params) => <TextField {...params} label="Select user" variant="outlined"/>}
+                            renderInput={(params) => <TextField {...params} label={t('Select user')} variant="outlined"/>}
                         />}
                     </DialogContent>
                     <DialogActions>
                         <Button onClick={handleForm} color="primary">
-                            Cancel
+                            {t('Cancel')}
                         </Button>
                         <Button onClick={handleUserAdd} variant="contained" color="primary">
-                            Add user
+                            {t('Add user')}
                         </Button>
                     </DialogActions>
                 </Dialog>
@@ -157,10 +160,10 @@ const AddWorker = () => {
                 className={classes.button}
                 startIcon={<AddToPhotosIcon/>}
             >
-                Add new worker
+                {t('Add new worker')}
             </Button>
         </>
     )
 }
 
-export default AddWorker
+export default withNamespaces()(AddWorker)
